@@ -1,0 +1,211 @@
+show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.03 sec)
+use technoelevate;
+Database changed
+mysql> show tables;
+Empty set (0.02 sec)
+
+mysql> create table interns(
+    -> name varchar(50) not null,
+    -> id int primary key check(id>0),
+    -> dobb date,
+    -> gender varchar(1) not null,
+    -> role varchar(25) not null,
+    -> mobile bigint unique not null check(mobile>0),
+    -> salary double check(mobile>0)
+    -> )
+    -> ;
+
+desc interns
+    -> ;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| name   | varchar(50) | NO   |     | NULL    |       |
+| id     | int(11)     | NO   | PRI | NULL    |       |
+| dobb   | date        | YES  |     | NULL    |       |
+| gender | varchar(1)  | NO   |     | NULL    |       |
+| role   | varchar(25) | NO   |     | NULL    |       |
+| mobile | bigint(20)  | NO   | UNI | NULL    |       |
+| salary | double      | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+7 rows in set (0.04 sec)
+
+insert into interns(id,name,gender,dobb,role,salary,mobile)
+    -> values(10,'Balakumara R','M','1992-07-21',Intern,2500,9445518211);
+
+insert into interns values('Ramanathan V',20,'1957-11-05','M','Site Engineer',9444224116,50000);
+
+insert into interns values('Revathi R',30,'1962-11-09','F','House wife',9361084430,25), insert into interns values ('Prem Kumar',40,'1991-11-16','M','Network Engineer',7200781627,50000);
+
+select name,gender from interns;
++--------------+--------+
+| name         | gender |
++--------------+--------+
+| Balakumara R | M      |
+| Ramanathan V | M      |
+| Revathi R    | F      |
+| Prem Kumar   | M      |
+
+select mobile from interns;
++------------+
+| mobile     |
++------------+
+| 7200781627 |
+| 9361084430 |
+| 9444224116 |
+| 9445518211 |
++------------+
+4 rows in set (0.00 sec)
+
+select id,role from interns;
++----+------------------+
+| id | role             |
++----+------------------+
+| 10 | Intern           |
+| 20 | Site Engineer    |
+| 30 | House wife       |
+| 40 | Network Engineer |
++----+------------------+
+4 rows in set (0.00 sec)
+
+create table emp(
+    -> name varchar(50) not null,
+    -> id int primary key check(id>0)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into emp values('Bala',10);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into emp values('Akash',20);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into emp values('Bala Krishna',30);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from emp;
++--------------+----+
+| name         | id |
++--------------+----+
+| Bala         | 10 |
+| Akash        | 20 |
+| Bala Krishna | 30 |
++--------------+----+
+3 rows in set (0.00 sec)
+
+mysql> alter table emp
+    -> add age int not null;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table emp
+    -> add salary double not null check(salary>0);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table emp
+    -> drop column age;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+alter table emp
+    -> add age varchar(20);
+
+alter table emp
+    -> modify age int;
+
+alter table emp
+    -> change id empId int;
+ truncate table info;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from info;
+Empty set (0.00 sec)
+
+mysql> drop table info;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from info;
+ERROR 1146 (42S02): Table 'technoelevate.info' doesn't exist
+
+mysql> select * from interns where dobb>'1992-01-01';
++---------------+----+------------+--------+-------------------+------------+--------+
+| name          | id | dobb       | gender | role              | mobile     | salary |
++---------------+----+------------+--------+-------------------+------------+--------+
+| Balakumara R  | 10 | 1992-07-21 | M      | Intern            | 9445518211 |   2500 |
+| Rajesh Kumar  | 50 | 1999-06-11 | M      | Developer         | 8870716170 |  55000 |
+| Vignesh Kumar | 60 | 2000-07-06 | M      | Developer         | 9874567897 |  55000 |
+| Akash         | 70 | 1999-05-02 | M      | Project Architect | 9677123456 |  75000 |
++---------------+----+------------+--------+-------------------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from interns where mobile mod 2=0;
++--------------+----+------------+--------+-------------------+------------+--------+
+| name         | id | dobb       | gender | role              | mobile     | salary |
++--------------+----+------------+--------+-------------------+------------+--------+
+| Ramanathan V | 20 | 1957-11-05 | M      | Site Engineer     | 9444224116 |  50000 |
+| Revathi R    | 30 | 1962-11-09 | F      | House wife        | 9361084430 |     25 |
+| Rajesh Kumar | 50 | 1999-06-11 | M      | Developer         | 8870716170 |  55000 |
+| Akash        | 70 | 1999-05-02 | M      | Project Architect | 9677123456 |  75000 |
++--------------+----+------------+--------+-------------------+------------+--------+
+
+ select * from interns where dobb<'2000-01-01';
++--------------+----+------------+--------+-------------------+------------+--------+
+| name         | id | dobb       | gender | role              | mobile     | salary |
++--------------+----+------------+--------+-------------------+------------+--------+
+| Balakumara R | 10 | 1992-07-21 | M      | Intern            | 9445518211 |   2500 |
+| Ramanathan V | 20 | 1957-11-05 | M      | Site Engineer     | 9444224116 |  50000 |
+| Revathi R    | 30 | 1962-11-09 | F      | House wife        | 9361084430 |     25 |
+| Prem Kumar   | 40 | 1991-11-16 | M      | Network Engineer  | 7200781627 |  50000 |
+| Rajesh Kumar | 50 | 1999-06-11 | M      | Developer         | 8870716170 |  55000 |
+| Akash        | 70 | 1999-05-02 | M      | Project Architect | 9677123456 |  75000 |
++--------------+----+------------+--------+-------------------+------------+--------+
+6 rows in set (0.00 sec)
+
+select * from interns where salary>=10000 and salary<=30000;
++--------------+----+------------+--------+-----------+------------+--------+
+| name         | id | dobb       | gender | role      | mobile     | salary |
++--------------+----+------------+--------+-----------+------------+--------+
+| Bala Krishna | 80 | 1995-11-09 | M      | Developer | 9635789456 |  29500 |
++--------------+----+------------+--------+-----------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> select * from interns where id>=10 and id<=30;
++--------------+----+------------+--------+---------------+------------+--------+
+| name         | id | dobb       | gender | role          | mobile     | salary |
++--------------+----+------------+--------+---------------+------------+--------+
+| Balakumara R | 10 | 1992-07-21 | M      | Intern        | 9445518211 |   2500 |
+| Ramanathan V | 20 | 1957-11-05 | M      | Site Engineer | 9444224116 |  50000 |
+| Revathi R    | 30 | 1962-11-09 | F      | House wife    | 9361084430 |     25 |
++--------------+----+------------+--------+---------------+------------+--------+
+3 rows in set (0.01 sec)
+
+mysql>  select * from interns where role='Developer' or role='Project Architect';
++---------------+----+------------+--------+-------------------+------------+--------+
+| name          | id | dobb       | gender | role              | mobile     | salary |
++---------------+----+------------+--------+-------------------+------------+--------+
+| Rajesh Kumar  | 50 | 1999-06-11 | M      | Developer         | 8870716170 |  55000 |
+| Vignesh Kumar | 60 | 2000-07-06 | M      | Developer         | 9874567897 |  55000 |
+| Akash         | 70 | 1999-05-02 | M      | Project Architect | 9677123456 |  75000 |
+| Bala Krishna  | 80 | 1995-11-09 | M      | Developer         | 9635789456 |  29500 |
++---------------+----+------------+--------+-------------------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql>  select avg(salary) AverageOfSalary from interns;
++-----------------+
+| AverageOfSalary |
++-----------------+
+|       39628.125 |
++-----------------+
+1 row in set (0.00 sec)

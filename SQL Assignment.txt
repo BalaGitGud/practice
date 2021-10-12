@@ -1,0 +1,116 @@
+mysql> select * from interns where dobb>'1992-01-01';
++---------------+----+------------+--------+-------------------+------------+--------+
+| name          | id | dobb       | gender | role              | mobile     | salary |
++---------------+----+------------+--------+-------------------+------------+--------+
+| Balakumara R  | 10 | 1992-07-21 | M      | Intern            | 9445518211 |   2500 |
+| Rajesh Kumar  | 50 | 1999-06-11 | M      | Developer         | 8870716170 |  55000 |
+| Vignesh Kumar | 60 | 2000-07-06 | M      | Developer         | 9874567897 |  55000 |
+| Akash         | 70 | 1999-05-02 | M      | Project Architect | 9677123456 |  75000 |
++---------------+----+------------+--------+-------------------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from interns where mobile mod 2=0;
++--------------+----+------------+--------+-------------------+------------+--------+
+| name         | id | dobb       | gender | role              | mobile     | salary |
++--------------+----+------------+--------+-------------------+------------+--------+
+| Ramanathan V | 20 | 1957-11-05 | M      | Site Engineer     | 9444224116 |  50000 |
+| Revathi R    | 30 | 1962-11-09 | F      | House wife        | 9361084430 |     25 |
+| Rajesh Kumar | 50 | 1999-06-11 | M      | Developer         | 8870716170 |  55000 |
+| Akash        | 70 | 1999-05-02 | M      | Project Architect | 9677123456 |  75000 |
++--------------+----+------------+--------+-------------------+------------+--------+
+
+ select * from interns where dobb<'2000-01-01';
++--------------+----+------------+--------+-------------------+------------+--------+
+| name         | id | dobb       | gender | role              | mobile     | salary |
++--------------+----+------------+--------+-------------------+------------+--------+
+| Balakumara R | 10 | 1992-07-21 | M      | Intern            | 9445518211 |   2500 |
+| Ramanathan V | 20 | 1957-11-05 | M      | Site Engineer     | 9444224116 |  50000 |
+| Revathi R    | 30 | 1962-11-09 | F      | House wife        | 9361084430 |     25 |
+| Prem Kumar   | 40 | 1991-11-16 | M      | Network Engineer  | 7200781627 |  50000 |
+| Rajesh Kumar | 50 | 1999-06-11 | M      | Developer         | 8870716170 |  55000 |
+| Akash        | 70 | 1999-05-02 | M      | Project Architect | 9677123456 |  75000 |
++--------------+----+------------+--------+-------------------+------------+--------+
+6 rows in set (0.00 sec)
+
+select * from interns where salary>=10000 and salary<=30000;
++--------------+----+------------+--------+-----------+------------+--------+
+| name         | id | dobb       | gender | role      | mobile     | salary |
++--------------+----+------------+--------+-----------+------------+--------+
+| Bala Krishna | 80 | 1995-11-09 | M      | Developer | 9635789456 |  29500 |
++--------------+----+------------+--------+-----------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> select * from interns where id>=10 and id<=30;
++--------------+----+------------+--------+---------------+------------+--------+
+| name         | id | dobb       | gender | role          | mobile     | salary |
++--------------+----+------------+--------+---------------+------------+--------+
+| Balakumara R | 10 | 1992-07-21 | M      | Intern        | 9445518211 |   2500 |
+| Ramanathan V | 20 | 1957-11-05 | M      | Site Engineer | 9444224116 |  50000 |
+| Revathi R    | 30 | 1962-11-09 | F      | House wife    | 9361084430 |     25 |
++--------------+----+------------+--------+---------------+------------+--------+
+3 rows in set (0.01 sec)
+
+mysql>  select * from interns where role='Developer' or role='Project Architect';
++---------------+----+------------+--------+-------------------+------------+--------+
+| name          | id | dobb       | gender | role              | mobile     | salary |
++---------------+----+------------+--------+-------------------+------------+--------+
+| Rajesh Kumar  | 50 | 1999-06-11 | M      | Developer         | 8870716170 |  55000 |
+| Vignesh Kumar | 60 | 2000-07-06 | M      | Developer         | 9874567897 |  55000 |
+| Akash         | 70 | 1999-05-02 | M      | Project Architect | 9677123456 |  75000 |
+| Bala Krishna  | 80 | 1995-11-09 | M      | Developer         | 9635789456 |  29500 |
++---------------+----+------------+--------+-------------------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql>  select avg(salary) AverageOfSalary from interns;
++-----------------+
+| AverageOfSalary |
++-----------------+
+|       39628.125 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select name,gender from interns;
++---------------+--------+
+| name          | gender |
++---------------+--------+
+| Balakumara R  | M      |
+| Ramanathan V  | M      |
+| Revathi R     | F      |
+| Prem Kumar    | M      |
+| Rajesh Kumar  | M      |
+| Vignesh Kumar | M      |
+| Akash         | M      |
+| Bala Krishna  | M      |
++---------------+--------+
+8 rows in set (0.00 sec)
+
+mysql> select mobile from interns;
++------------+
+| mobile     |
++------------+
+| 7200781627 |
+| 8870716170 |
+| 9361084430 |
+| 9444224116 |
+| 9445518211 |
+| 9635789456 |
+| 9677123456 |
+| 9874567897 |
++------------+
+8 rows in set (0.00 sec)
+
+mysql> select id,role from interns;
++----+-------------------+
+| id | role              |
++----+-------------------+
+| 10 | Intern            |
+| 20 | Site Engineer     |
+| 30 | House wife        |
+| 40 | Network Engineer  |
+| 50 | Developer         |
+| 60 | Developer         |
+| 70 | Project Architect |
+| 80 | Developer         |
++----+-------------------+
+8 rows in set (0.00 sec)
