@@ -1,0 +1,251 @@
+select name from interns where commision is null;
++--------------+
+| name         |
++--------------+
+| Ramanathan V |
+| Revathi R    |
+| Prem Kumar   |
+| Akash        |
++--------------+
+4 rows in set (0.00 sec)
+
+ Select name,id,role,email from interns where ReportTo is null;
++-------+-----+------+----------------------+
+| name  | id  | role | email                |
++-------+-----+------+----------------------+
+| Vivek | 110 | CEO  | vivektommy@gmail.com |
++-------+-----+------+----------------------+
+1 row in set (0.00 sec)
+
+select Name,Role from info where deptNo=30;
++----------+----------+
+| Name     | Role     |
++----------+----------+
+| Lokesh   | Salesman |
+| Vishanth | Salesman |
++----------+----------+
+2 rows in set (0.00 sec)
+
+select Name from info where deptNo=30 and salary>1500;
++----------+
+| Name     |
++----------+
+| Lokesh   |
+| Vishanth |
++----------+
+2 rows in set (0.02 sec)
+
+select Name from info where deptNo not in(10,20);
++----------+
+| Name     |
++----------+
+| Lokesh   |
+| Vishanth |
++----------+
+2 rows in set (0.00 sec)
+
+select name from interns where name not like 's%';
++---------------+
+| name          |
++---------------+
+| Balakumara R  |
+| Ramanathan V  |
+| Revathi R     |
+| Prem Kumar    |
+| Rajesh Kumar  |
+| Vignesh Kumar |
+| Akash         |
+| Kishore Kumar |
+| Nanda kumar   |
+| Lokesh Kumar  |
+| Vivek         |
++---------------+
+11 rows in set (0.02 sec)
+
+select Name from info where ReportTo is not null and deptNo=10;
++---------+
+| Name    |
++---------+
+| Nanda   |
+| Rasheed |
++---------+
+2 rows in set (0.00 sec)
+
+ select Name from info where comm is null and Role='Clerk';
++------+
+| Name |
++------+
+| Rama |
++------+
+1 row in set (0.00 sec)
+
+select name from info where ReportTo is null and deptNo in(10,30);
++------+
+| name |
++------+
+| Rama |
++------+
+1 row in set (0.00 sec)
+
+mysql> select name from info
+    -> where Role='Salesman'
+    -> and
+    -> salary>2450;
++----------+
+| name     |
++----------+
+| Vishanth |
++----------+
+1 row in set (0.00 sec)
+
+select name from interns where name like 'M%' or 'J%';
++-------+
+| name  |
++-------+
+| Mohan |
++-------+
+1 row in set, 1 warning (0.02 sec)
+
+select avg(salary) Annual_Salary from info where deptNo != 30;
++---------------+
+| Annual_Salary |
++---------------+
+|     1775.0000 |
++---------------+
+1 row in set (0.04 sec)
+
+select name from interns where name not like '%es' or '%r';
++---------------+
+| name          |
++---------------+
+| Balakumara R  |
+| Ramanathan V  |
+| Revathi R     |
+| Prem Kumar    |
+| Rajesh Kumar  |
+| Vignesh Kumar |
+| Akash         |
+| Kishore Kumar |
+| Nanda kumar   |
+| Lokesh Kumar  |
+| Vivek         |
+| Mohan         |
+| John          |
++---------------+
+13 rows in set, 1 warning (0.00 sec)
+
+select name,(salary*0.1+salary) Hike from info where ReportTo is not null and deptNo=10;
++---------+-------+
+| name    | Hike  |
++---------+-------+
+| Nanda   | 550.0 |
+| Rasheed | 660.0 |
++---------+-------+
+2 rows in set (0.02 sec)
+
+ select Name from interns where (Role='Salesman') and (Name like '%E_') and (salary like '----');
+Empty set (0.00 sec)
+
+select * from info where dob>'1981-12-31';
++----------+----------+------------+--------+--------+--------+----------+------+
+| Name     | Role     | dob        | gender | deptNo | salary | ReportTo | comm |
++----------+----------+------------+--------+--------+--------+----------+------+
+| Rasheed  | Clerk    | 1985-06-07 | M      |     10 |    600 | Lokesh   |  500 |
+| Lokesh   | Salesman | 1992-05-08 | M      |     30 |   2000 | Krishna  | 1000 |
+| Vishanth | Salesman | 1993-05-25 | M      |     30 |   5000 | Krishna  | 1000 |
++----------+----------+------------+--------+--------+--------+----------+------+
+3 rows in set (0.02 sec)
+
+select * from interns where substring(dobb,6,2)=2;
++-------+-----+------------+--------+------+------------+---------+--------+------------+----------------------+-----------+----------+
+| name  | id  | dobb       | gender | role | mobile     | salary  | deptid | bloodGroup | email                | commision | ReportTo |
++-------+-----+------------+--------+------+------------+---------+--------+------------+----------------------+-----------+----------+
+| Vivek | 110 | 1995-02-01 | M      | CEO  | 9556123478 | 1200000 |    500 | A positive | vivektommy@gmail.com |      NULL | NULL     |
++-------+-----+------------+--------+------+------------+---------+--------+------------+----------------------+-----------+----------+
+1 row in set (0.00 sec)
+
+select dname from department where location like '%o%' and dname like '%o%';
++-----------+
+| dname     |
++-----------+
+| developer |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from info where Role like '%man%';
++----------+----------+------------+--------+--------+--------+----------+------+
+| Name     | Role     | dob        | gender | deptNo | salary | ReportTo | comm |
++----------+----------+------------+--------+--------+--------+----------+------+
+| Krishna  | Manager  | 1978-07-21 | M      |     20 |   5000 | NULL     | NULL |
+| Lokesh   | Salesman | 1992-05-08 | M      |     30 |   2000 | Krishna  | 1000 |
+| Vishanth | Salesman | 1993-05-25 | M      |     30 |   5000 | Krishna  | 1000 |
++----------+----------+------------+--------+--------+--------+----------+------+
+3 rows in set (0.00 sec)
+
+mysql>  select * from info where dob >='1983-01-01' and dob <='1986-12-31';
++---------+-------+------------+--------+--------+--------+----------+------+
+| Name    | Role  | dob        | gender | deptNo | salary | ReportTo | comm |
++---------+-------+------------+--------+--------+--------+----------+------+
+| Rasheed | Clerk | 1985-06-07 | M      |     10 |    600 | Lokesh   |  500 |
++---------+-------+------------+--------+--------+--------+----------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from interns where substring(dobb,6,7)>=11;
++--------------+----+------------+--------+-----------+------------+--------+--------+------------+-----------------------+-----------+----------+
+| name         | id | dobb       | gender | role      | mobile     | salary | deptid | bloodGroup | email                 | commision | ReportTo |
++--------------+----+------------+--------+-----------+------------+--------+--------+------------+-----------------------+-----------+----------+
+| Ramanathan V | 20 | 1957-11-05 | M      | Architect | 9444224116 |  50000 |    100 | o positive | vramanathan@gmail.com |      NULL | Vivek    |
+| Revathi R    | 30 | 1962-11-09 | F      | DBA       | 9361084430 |  40000 |    100 | o positive | revathi1962@gmail.com |      NULL | Vivek    |
+| Prem Kumar   | 40 | 1991-11-16 | M      | DBA       | 7200781627 |  50000 |    200 | o positive | vpkprem@gmail.com     |      NULL | Vivek    |
++--------------+----+------------+--------+-----------+------------+--------+--------+------------+-----------------------+-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from info where comm>salary;
++--------+----------+------------+--------+--------+--------+----------+------+
+| Name   | Role     | dob        | gender | deptNo | salary | ReportTo | comm |
++--------+----------+------------+--------+--------+--------+----------+------+
+| Lokesh | Salesman | 1992-05-08 | M      |     30 |   2000 | Krishna  | 3000 |
++--------+----------+------------+--------+--------+--------+----------+------+
+1 row in set (0.00 sec)
+
+mysql>  select name,Role from interns
+    ->  where ReportTo is not null
+    -> and name like 'S%';
+
++---------+-----------+
+| name    | Role      |
++---------+-----------+
+| Sathish | Developer |
++---------+-----------+
+1 row in set (0.00 sec)
+
+mysql>  select name,salary from interns
+    -> where salary*12 like '%0';
++---------------+---------+
+| name          | salary  |
++---------------+---------+
+| Balakumara R  |    2500 |
+| Ramanathan V  |   50000 |
+| Revathi R     |   40000 |
+| Akash         |   75000 |
+| Kishore Kumar |   70000 |
+| Nanda kumar   |   80000 |
+| Lokesh Kumar  |   90000 |
+| Vivek         | 1200000 |
+| Mohan         |   40000 |
+| John          |   70000 |
+| Sathish       |   55000 |
++---------------+---------+
+11 rows in set (0.00 sec)
+
+mysql> select name from interns where name like '%L%L%';
+Empty set (0.00 sec)
+
+mysql> select name from interns where substring(name,1,1) in('a','e','i','o','u');
++-------+
+| name  |
++-------+
+| Akash |
++-------+
+1 row in set (0.00 sec)
+
