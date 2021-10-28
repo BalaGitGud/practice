@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dance Club</title>
+    <style>
+        #d1 {
+            width: 10px;
+            height: 20px;
+            overflow-y: scroll;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Registration Form : Dance Club</h3>
+    <hr />
+    <table border="1">
+
+        <tr>
+            <th>Name:</th>
+
+            <td>
+                <label for="name"></label>
+                <input type="text" name="name" id="name">
+            </td>
+        </tr>
+
+        <tr>
+            <th>IC No:</th>
+            <td>
+                <label for="icno"></label>
+                <input type="number" name="icno" id="icno" size="1">-
+                <input type="number" name="icno" id="icno" size="4">-
+                <input type="number" name="icno" id="icno">
+            </td>
+        </tr>
+
+        <tr>
+            <th>Address:</th>
+            <td>
+                <textarea name="" id="" cols="72" rows="5"></textarea>
+            </td>
+        </tr>
+
+        <tr>
+            <th>Gender:</th>
+            <td>
+                <label for="gender"></label>
+                <input type="radio" name="gender" id="male">Male
+                <input type="radio" name="gender" id="female">Female
+            </td>
+        </tr>
+
+        <tr>
+            <th>Dance Type:</th>
+            <td>
+                <label for="dtype"></label>
+                <input type="checkbox" name="dtype" id="dtype">Zapin
+                <input type="checkbox" name="dtype" id="dtype">Joget
+                <input type="checkbox" name="dtype" id="dtype">Inang
+                <input type="checkbox" name="dtype" id="dtype">Lion Dance
+            </td>
+        </tr>
+
+        <tr>
+            <th>Competition:</th>
+            <td id="d1">
+                State Level <br>
+                Naional Level <br>
+                StateInternational Level
+            </td>
+        </tr>
+
+        <tr>
+            <th>Nationality:</th>
+            <td>
+                <label for="nationality"></label>
+                <select name="nationality" id="nationality">
+                    <option value="0" disabled selected>-please select</option>
+                    <option value="indian">Indian</option>
+                    <option value="others">Others</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <th>Password:</th>
+            <td>
+                <label for="pwd"></label>
+                <input type="password" name="pwd" id="pwd">
+            </td>
+        </tr>
+    </table>
+    <button type="submit">Register Me</button>
+    <button type="reset">Cancel</button>
+</body>
+
+</html>
